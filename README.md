@@ -4,4 +4,4 @@
 
 3、支持function call、知识库；
 
-4、 后端采用Django，前端采用Vue，大模型框架采用LangChain；
+4、后端采用Django，前端采用Vue，大模型框架采用LangChain；
