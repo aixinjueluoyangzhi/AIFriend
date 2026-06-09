@@ -5,7 +5,7 @@ import NarBar from "@/components/navbar/NarBar.vue";
 
 <template>
   <NarBar>
-
+    <RouterView/>
   </NarBar>
 </template>
 
