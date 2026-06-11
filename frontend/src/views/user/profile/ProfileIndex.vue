@@ -66,7 +66,7 @@ async function handleUpdate() {
 
         <div class="flex justify-between">
           <button @click="handleUpdate" class="btn btn-neutral w-40 mt-2">更新</button>
-          <button @click="backHomepage" class="btn btn-neutral w-40 mt-2">取消</button>
+          <button @click="backHomepage" class="btn btn-neutral w-40 mt-2">返回</button>
         </div>
       </div>
     </div>

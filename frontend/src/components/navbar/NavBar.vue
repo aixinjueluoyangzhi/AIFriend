@@ -31,11 +31,6 @@ const user = useUserStore()
           </div>
         </div>
         <div class="navbar-end">
-          <RouterLink v-if="user.isLogin()" :to="{name: 'create'}" active-class="btn-active"
-                      class="btn btn-ghost text-base mr-6">
-            <CreateIcon/>
-            创作
-          </RouterLink>
           <RouterLink v-if="user.hasPulledUserInfo && !user.isLogin()" :to="{name: 'user-account-login'}" active-class="btn-active"
                       class="btn btn-ghost text-lg">
             登录

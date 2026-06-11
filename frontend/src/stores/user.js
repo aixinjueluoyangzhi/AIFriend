@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import {ref} from "vue";
+import api from "@/js/http/api.js";
 
 export const useUserStore = defineStore('user', () => {
     const id = ref(0)
@@ -36,6 +37,20 @@ export const useUserStore = defineStore('user', () => {
         hasPulledUserInfo.value = newStatus
     }
 
+    // 在 store 中添加这个函数
+    async function fetchUserInfo() {
+        try {
+            const res = await api.get('/api/user/account/get_user_info/')
+            if (res.data.result === 'success') {
+                setUserInfo(res.data)
+                return true
+            }
+            return false
+        } catch (error) {
+            return false
+        }
+    }
+
     return {
         id,
         username,
@@ -48,5 +63,6 @@ export const useUserStore = defineStore('user', () => {
         logout,
         hasPulledUserInfo,
         setHasPulledUserInfo,
+        fetchUserInfo,
     }
 })

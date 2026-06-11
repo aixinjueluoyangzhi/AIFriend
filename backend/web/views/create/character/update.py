@@ -39,7 +39,14 @@ class UpdateCharacterView(APIView):
             return Response({
                 'result': 'success',
             })
-        except:
-            Response({
-                'result': '系统异常，请稍后重试'
+        except Exception as e:  # 捕获具体异常
+            print(f"错误: {e}")  # 打印到控制台
+            import traceback
+            traceback.print_exc()  # 打印完整堆栈
+            return Response({
+                'result': f'系统异常: {str(e)}'  # 临时返回具体错误（调试完改回去）
             })
+        # except:
+        #     return Response({
+        #         'result': '系统异常，请稍后重试'
+        #     })

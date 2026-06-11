@@ -33,7 +33,10 @@ class CreateCharacterView(APIView):
                 return Response({
                     'result': '聊天背景不能为空'
                 })
-
+            if Character.objects.filter(name=name).exists():
+                return Response({
+                    'result': '角色名已存在'
+                })
             Character.objects.create(
                 author=user_profile,
                 name=name,
