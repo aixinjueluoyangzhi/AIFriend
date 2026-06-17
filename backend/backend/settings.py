@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-^s$o-)&1a3l3gy*ymhdut0(2r%wrp5$p+@8xj60gqs=5!#a_dv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','app8072.acapp.acwing.com.cn']
 
 
 # Application definition
@@ -122,13 +122,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATIC_ROOT = BASE_DIR / 'static'  # 生产阶段使用
 
-STATICFILES_DIRS = [  # 开发阶段使用，生产阶段需要注释掉
-    BASE_DIR / 'static',
-]
+if not DEBUG:
+    STATIC_ROOT = BASE_DIR / 'static'  # 生产阶段使用
+else:
+    STATICFILES_DIRS = [  # 开发阶段使用，生产阶段需要注释掉
+        BASE_DIR / 'static',
+    ]
 
-MEDIA_URL = 'http://127.0.0.1:8000/media/'
+if DEBUG:
+    MEDIA_URL = 'http://127.0.0.1:8000/media/'
+else:
+    MEDIA_URL = 'https://app8072.acapp.acwing.com.cn/media/'
+
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # 使用JWT认证
