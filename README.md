@@ -2,6 +2,6 @@
 
 2、支持语音识别、语音合成、语音复刻，实现跟虚拟人物语音通话交流；
 
-3、支持function call、知识库；
+3、支持function call、知识库和MCP；
 
 4、后端采用Django，前端采用Vue，大模型框架采用LangChain；
