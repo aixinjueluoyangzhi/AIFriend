@@ -1,5 +1,8 @@
 import os
+import asyncio
+
 from pprint import pprint
+
 from django.conf import settings
 from typing import TypedDict, Annotated, Sequence
 from langchain_core.messages import BaseMessage
@@ -7,9 +10,10 @@ from langchain_openai import ChatOpenAI
 from langgraph.constants import START, END
 from langgraph.graph import add_messages, StateGraph
 from langgraph.prebuilt import ToolNode
+
 from web.views.friend.message.chat.ai_tool import get_time, search_knowledge_base, read_file, write_file, search_web, \
     execute_terminal_command
-
+from web.views.friend.message.chat.mcp_client import load_amap_tools
 
 class ChatGraph:
     @staticmethod
@@ -24,6 +28,13 @@ class ChatGraph:
 
         if settings.DEBUG:
             tools.append(execute_terminal_command)
+
+        try:
+            amap_tools = asyncio.run(load_amap_tools())
+            tools.extend(amap_tools)
+
+        except Exception as e:
+            print(f"加载高德MCP失败: {e}")
 
         llm = ChatOpenAI(
             model='deepseek-v4-flash',
